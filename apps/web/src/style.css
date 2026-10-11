@@ -126,6 +126,28 @@ pre {
   width: 36px;
   height: 36px;
   flex-shrink: 0;
+  transform-origin: center;
+}
+.maker-credit .robin-body {
+  transform-origin: 32px 44px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .brand:is(:hover, :focus-visible) .brand-mark {
+    animation: mark-greeting 700ms cubic-bezier(.2, .8, .2, 1);
+  }
+  .maker-credit:is(:hover, :focus-visible) .robin-body {
+    animation: bird-greeting 700ms cubic-bezier(.2, .8, .2, 1);
+  }
+}
+@keyframes mark-greeting {
+  0%, 100% { transform: none; }
+  45% { transform: translateY(-3px) rotate(-7deg); }
+  75% { transform: rotate(2deg); }
+}
+@keyframes bird-greeting {
+  0%, 100% { transform: rotate(0); }
+  40% { transform: translateY(-2px) rotate(-9deg); }
+  70% { transform: rotate(3deg); }
 }
 .brand-web {
   font-weight: 400;
