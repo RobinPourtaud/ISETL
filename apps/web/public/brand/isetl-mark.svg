@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <title>ISETL — overlapping sets</title>
+  <g transform="rotate(35 32 32)">
+    <circle cx="24" cy="32" r="19" fill="#DCEAE2"/>
+    <circle cx="40" cy="32" r="19" fill="#FAF8F1"/>
+    <path d="M32 14.7663A19 19 0 0 1 32 49.2337A19 19 0 0 1 32 14.7663Z" fill="#C5D880"/>
+    <g stroke="#103E45" stroke-width="3.5">
+      <circle cx="24" cy="32" r="19"/>
+      <circle cx="40" cy="32" r="19"/>
+    </g>
+  </g>
+</svg>

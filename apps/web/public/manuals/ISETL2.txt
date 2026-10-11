@@ -1,0 +1,140 @@
+
+Index
+
+?, 32, 66                           cos, 36
+!  (directives), 16, 41
+@, 33, 66                           DEFN, 33, 66
+:=, 17, 63                          DEFNS, 33, 66
+-, 28, 65                           difference (-) of two sets,
+%, 32, 66                                   29, 66
+.., 25--26, 64--65                  directives, 41
++, 28, 65                           div, 6, 29, 66
+/, 29, 66                           do, 6, 18, 63
+~, 24, 64                           dollar sign, 6
+abs, 39                             domain, 36
+!alias, 42
+!allocate, 42, 44                   !echo, 42
+and, 6, 29, 66                      !edit, 41, 43
+arb, 39                             else, 6, 18, 63
+atom, 9                             ELSE-IF, 21, 63
+                                    elseif, 6, 18, 63
+BINOP, 33, 66                       ELSE-IFS, 21, 63
+BOUND, 24, 64                       ELSE-PART, 21, 63
+bound variable, 23                  empty
+BOUND-LIST, 24, 64                      set (!1_2!, ;), 10
+                                        tuple ([]), 11
+call by value, 14                   end, 6, 18, 33, 63, 66
+cardinality (#) of a set, 28,       eof, 38
+        65                          equal, 29, 66
+ceil, 35                            error messages, 56
+char, 35                            even, 35
+character set, 6                    exists, 6, 32, 66
+!clear, 41, 43                      exit, 4
+close, 38                           exponentiation (**), 29, 66
+!code, 42                           EXPR, 27, 65
+comments ($), 6                     EXPR-LIST, 33, 65
+compound operator (%), 32, 66
+concatenation (+)                   false, 6, 8, 27, 65
+    string, 29, 66                  !fast, 43
+    tuple, 29, 66                   file, 9
+CONSOLE, 38                         fix, 35
+
+                                67
+
+
+68                                                           INDEX
+
+float, 35                           Interactive Line Editor,
+FLOATING-POINT, 27, 65                      48--55
+floating-point number, 7            intersection (*, inter, \   ),
+floor, 35                                   29--30, 66
+for, 6, 18, 63                      is..., 37
+forall, 6, 32, 66                   isetl.ini, 4, 44
+FORMER, 25, 65                      .isetlrc, 4, 44
+from, 6, 18, 20, 63                 ITERATOR, 23, 64
+fromb, 6, 20, 63                    ITER-LIST, 24, 64
+frome, 6, 20, 63
+func, 6, 12--15, 34, 66
+FUNC-CONST, 28, 33, 65--66          length (#)
+FUNC-HEAD, 34, 66                       of a string, 28, 65
+function, 12--15, 26                    of a tuple, 28, 65
+    application, 25                 less, 6, 29, 66
+    modified at a point, 15         LHS, 27, 64
+    of several variables, 26        LHS-LIST, 27, 64
+generalize operation, 32, 66        ln, 36
+grammar, 16                         lo, 39
+                                    local, 6
+hi, 39                              LOCALS, 34, 66
+hyperbolic functions, 36            log, 36
+
+ID, 27, 65                          map, 12, 25
+ID-LIST, 34, 66                     max, 36
+!ids, 42                            max_line, 39
+if, 6, 18, 63                       !memory, 44
+iff, 6, 29, 66                      min, 36
+ile.ini, 49                         mmap, 25
+image, 36                           mod, 6, 29, 66
+image, 25                           MSDOS, 39
+impl, 6, 29, 66
+in, 6, 24, 29, 64, 66               newat, 6, 28, 65
+!include, 5, 41                     not, 6, 28, 65
+INPUT, 17, 63                       notin, 6, 29, 66
+INTEGER, 27, 65                     npow, 35
+integer, 7                          number, 7
+inter, 6, 29, 66
+                                    odd, 35
+
+
+INDEX                                                           69
+
+of, 6                               scope, 14, 23
+om, 6, 28, 65                       SELECTOR, 25, 64
+!oms, 42                            set former, 10
+opena, 38                           sgn, 36
+openr, 38                           SIMPLE-ITERATOR, 24, 64
+openw, 38                           sin, 36
+opt, 6, 34, 66                      slice, 25
+optional parameters, 14             !slow, 43
+OPT-PART, 34, 66                    smap, 25
+or, 6, 29, 66                       !source, 43
+ord, 39                             sqrt, 36
+origin, 40                          !stack, 43
+PAIR, 21, 64                        STMT, 16--17, 63
+PAIR-LIST, 21, 64                   STMTS, 21, 64
+parameter, 14                       STRING, 27, 65
+pow, 35                             subset, 6, 29, 66
+!pp, 43                             !system, 42, 45
+precedence rules, 40                system, 39
+precision, 39                       take, 6, 20, 63
+print, 6, 19, 39, 63                then, 6, 18, 63
+printf, 6, 19                       to, 6, 19, 63
+PROGRAM, 17, 63                     !trace, 42
+program, 6                          trace, 43--44
+prompts, 4                          transcendental functions, 36
+                                    trig functions, 36
+!quit, 4, 41                        true, 6, 8, 27, 65
+quit, 4                             type test, 37
+
+random, 36, 39                      union, 6, 29, 66
+randomize, 36                       union (+, union, [   ), 29, 66
+read, 6, 18, 63                     !unwatch, 43--44
+readf, 6
+!record, 42, 45                     value, 6
+relational operators, 29, 66        value declaration, 15
+replication (*)                     VALUES, 34, 66
+    string, 29, 66                  !verbose, 42
+    tuple, 29, 66                   !version, 42
+return, 6, 12, 20, 63               video, 39
+
+
+70                                                           INDEX
+
+!watch, 43--44
+where, 6, 33, 66
+while, 6, 18, 63
+with, 6, 29, 66
+write, 6
+writeln, 6
+
+
+

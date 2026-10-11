@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="480" viewBox="0 0 1000 480">
+<rect width="1000" height="480" fill="#FAF8F1"/>
+<rect x="650" width="350" height="480" fill="#103E45"/>
+<defs><symbol fill="none" id="mark" viewBox="0 0 64 64">  <g transform="rotate(35 32 32)">
+    <circle cx="24" cy="32" r="19" fill="#DCEAE2"/>
+    <circle cx="40" cy="32" r="19" fill="#FAF8F1"/>
+    <path d="M32 14.7663A19 19 0 0 1 32 49.2337A19 19 0 0 1 32 14.7663Z" fill="#C5D880"/>
+    <g stroke="#103E45" stroke-width="3.5">
+      <circle cx="24" cy="32" r="19"/>
+      <circle cx="40" cy="32" r="19"/>
+    </g>
+  </g>
+</symbol>
+<symbol fill="none" id="dark-mark" viewBox="0 0 64 64">  <g transform="rotate(35 32 32)">
+    <circle cx="24" cy="32" r="19" fill="#DCEAE2"/>
+    <circle cx="40" cy="32" r="19" fill="#FAF8F1"/>
+    <path d="M32 14.7663A19 19 0 0 1 32 49.2337A19 19 0 0 1 32 14.7663Z" fill="#C5D880"/>
+    <g stroke="#FAF8F1" stroke-width="3.5">
+      <circle cx="24" cy="32" r="19"/>
+      <circle cx="40" cy="32" r="19"/>
+    </g>
+  </g>
+</symbol></defs>
+<g font-family="Arial, sans-serif" fill="#103E45">
+<text x="40" y="44" font-size="12" letter-spacing="2">ISETL / APP MARK</text>
+<use href="#mark" x="40" y="98" width="208" height="208"/>
+<text x="278" y="211" font-size="50" font-weight="600">ISETL</text>
+<text x="280" y="241" font-size="18" fill="#4D6968">web</text>
+<path d="M40 337H610" stroke="#D5DED3"/>
+<use href="#mark" x="45" y="379" width="16" height="16"/>
+<use href="#mark" x="119" y="375" width="24" height="24"/>
+<use href="#mark" x="209" y="369" width="36" height="36"/>
+<use href="#mark" x="315" y="355" width="64" height="64"/>
+<g font-size="11" fill="#4D6968"><text x="40" y="449">16 px</text><text x="115" y="449">24 px</text><text x="213" y="449">36 px</text><text x="334" y="449">64 px</text></g>
+<text x="683" y="44" fill="#FAF8F1" font-size="12" letter-spacing="2">DARK FAVICON</text>
+<use href="#dark-mark" x="705" y="115" width="240" height="240"/>
+<use href="#dark-mark" x="817" y="393" width="16" height="16"/>
+</g></svg>

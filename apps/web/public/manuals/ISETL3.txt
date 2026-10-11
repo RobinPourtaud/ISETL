@@ -1,0 +1,440 @@
+ADDITIONAL FEATURES - ISETL 3.0
+-------------------------------
+
+1. The characters ' and ^ are legal characters in identifiers.
+   Thus x', y'', a^, x3'  are legal identifiers.
+
+2. Floating point numbers do not require an integer preceding the decimal 
+   point.  Therefore, .9 and 0.9 are legal.
+
+3. {r1,r2..r3} and [r1,r2..r3] are defined for floating point numbers.
+
+4. [c1..c2] works for characters, not just integers.
+
+5. int**-k returns floating point result.
+
+6. Procedures
+
+    Procedures are created just like funcs, replacing `func' with
+    `proc'.  The difference is that you may not return a value from a
+    proc, hence `return expr' is not legal in a proc.  Procs actually
+    return an undefined value, but this should not be depended on.
+    This value has the peculiar property that it does not print, hence
+    calling a proc at the prompt produces no output.
+
+7. "choose iterators : condition" is available.  
+
+    For example, 
+
+       choose x in S: condition 
+
+    will return some value of x in S satisfying the condition.
+
+    Other iterators and returned values are:
+       x in S, y in T        [x,y]
+       x,y in S              [x,y]
+       y=f(x)                [x,y]
+       y=f(x),b=g(a)         [[x,y],[a,b]]
+       y=f{x}                [x,y], where y is a set
+       
+     Thus, wherever you use "exists", you can use "choose" and see
+     what value exists!  Try choose x in {1..8}| even(x); and see
+     what value is returned.  You can assign that value to some
+     variable:  z := choose x in {1..8}| even(x);
+
+     Another example:
+       >       a := 100;
+       >       b := 7;
+       >       [q,r] := choose q in [1..a], r in [0..b-1] : a = q*b+r;
+       >       q;
+       14;
+       >       r;
+       2;
+
+
+
+                           Page 2
+
+8.  Directives.
+
+    !setrandom off 
+     prevents sets from being printed in "random" ordering.
+
+    !setrandom on 
+     restores the default "random" ordering of sets.
+
+    !rational on  
+     enables rational arithmetic.  (Try 2/7 + 45/19;  
+     and see exact rational answer.)
+
+    !rational off 
+     disables the rational arithmetic, which restores the default condition.
+
+     See Predefined Functions (#9 below) for funcs num and den.
+
+    !slow 
+     single steps through program, a line at a time.  
+     At the prompt, '?>', the choices are:
+
+        RETURN -- execute
+        f      -- execute fast (no more single steps)
+        l      -- change to leap mode (function calls are not traced)
+        c      -- change to crawl mode (default, function calls are traced)
+        e      -- evaluate.  Enter an expression to be evaluated on next line.
+
+    !fast 
+     turns off slow mode
+
+    !alias
+     allows the user to define shorter expressions for the other directives.  
+     For example,  !alias c clear  allows the user to type  !c  instead 
+     of  !clear.   These aliases should be placed in the isetl.ini file.  
+     However, note the following:
+
+       !alias s system
+       !alias type system type
+       But, you cannot use !alias type s type, because !s won't 
+       be rescanned.
+
+    !pp (PrettyPrint)
+     prints the lines containing a top-level (not nested) func definition.
+     This only prints those lines from 'func' to 'end', so it is best to 
+     write
+            f := func...    rather than    f :=
+                                                func...
+
+     The abbreviated func forms, :args -> expr: and |args -> expr|, are also
+     printed by !pp.  
+     Those lines that were entered while '!source on' are also printed.
+
+     !pp id file -- appends the source for id to file.
+     !pp id      -- appends the source for id to the PREVIOUS file.
+     !pp         -- resets the default file to stdout.
+
+
+                           Page 3
+
+     !lock    id-list --  prevents assignments to ids.  
+     !unlock  id-list --  permits assignments to ids.
+       Locked ids cannot appear as LHS in code.  This prevents future
+       assignment statements, not the execution of previously defined
+       assignments.  All predefined function names are initially
+       locked.
+
+     !credits -- lists some of the copyright info, shortened the header.
+
+9.  Predefined Functions.
+
+     precision(n) -- sets default printing of reals to n decimal places 
+     if n > 0.  If n < 0 , reals are printed in scientific notation to 
+     |n| digits.
+
+     system(string) -- lets you invoke the DOS command "string" from a program.
+
+     as_string(x) -- returns a string representation of number x.  Caution:
+     the expected string is not always returned.  For example, as_string(345)
+     returns "345", but as_string(34567) returns "3.46e+04".
+
+     lo(T)     -- tuple T is defined from lo(T)..hi(T).
+     hi(T)
+     origin(i) -- changes the default origin of tuples to i.  It returns the
+     value of the previous origin.
+
+     is_rational(x) -- see Directives for !rational
+     den(r)    -- returns the denominator of r (rational or int)
+     num(r)    -- returns the numerator of r (rational or int)
+
+10.  Abbreviation of func definitions.
+
+     :args -> expr:  
+
+     and 
+
+     |args -> expr| 
+
+     are abbreviations for func(args); return expr; end func
+     The vertical bars (|) seem easier to read than the colons (:).
+
+     Examples:  |x -> x*sin(x)|
+                |x,y -> [x,y]|
+
+     if expressions no longer require the else part and return om if the
+     conditions are false.  This makes it easier to write short functions:
+     | x-> if x/=0 then 1/x end if |
+
+
+                             Page 4
+
+11.  Screen Editor.
+
+     The idea is that you send lines to ISETL to be evaluated by typing
+     RETURN.  Everything from the line containing TAG down to the line on
+     which the CURSOR lies is highlighted.  When you type RETURN the
+     highlighted region is echoed and executed.
+
+     The TAG is automatically placed on the last line, so just typing
+     normally will behave as expected.  If you want to send earlier
+     lines, edit them FIRST, then TAG the first line you wish sent by
+     typing ^T, move CURSOR to the last line that you wish sent, and type
+     RETURN.  Prompts at the beginning of a line are ignored.
+     (Only negative point is if you try to type a line starting with
+     '>', '?', or '!'.  Leave a blank in front of them and all is well.
+     Blanks are automatically inserted after the prompts.)
+
+     To make it easy to check a region, you can find TAG by typing ^X
+     (control-X).  This will exchange CURSOR and TAG.  Type ^X again to 
+     change it back again.
+
+     To make it easy to find the last region sent, type ^B.  This finds
+     the BOOKMARK , which is left behind at the old TAG after a region
+     is sent to ISETL.
+
+     To "frame" the last region sent, or copy just made, or file just
+     read, type ^A.  This puts TAG and CURSOR around the previous region.
+
+12.  Keys.
+
+       ESC            toggles in and out of menu
+       UP_ARROW       up a line
+       DN_ARROW       down a line
+       LT_ARROW       left one column
+       RT_ARROW       right one column
+       INS            break line
+       DEL            delete character under cursor
+       Backspace      erase character left of cursor
+       Home           left end of line
+       End            right end of line
+       PgUp           up 8 lines
+       PgDn           down 8 lines
+       CPgUp          top of buffer
+       CPgDn          bottom of buffer
+       RETURN         if below TAG, execute, else insert return
+       LINEFEED       if below TAG, execute, else insert return
+        ctrl-A          ('Again') frame previous region
+        ctrl-B          ('Bookmark') go back to previous TAG
+        ctrl-E          ('Erase') erase current line
+        ctrl-L          refresh screen
+        ctrl-T          toggles TAG on and off
+        ctrl-X          ('eXchange') exchange TAG and CURSOR
+        ctrl-Z          escape to DOS.  Use ''exit'' to return
+        F1              help (also found within menu)
+
+
+
+                             Page 5
+
+13.  Menu
+
+     You can execute commands from the menu by typing ESC followed by the
+     capital letter in the command  or you can enter the menu by typing ESC
+     and then moving to the command with the arrows and typing RETURN.  The 
+     menu includes:
+
+       Copy region      Copies region to end of buffer.          (ESC-C)
+       Print region     Prints region on printer                  (ESC-P)
+       Save region      Saves region in named file 
+                        without prompts.                          (ESC-W)
+       Read file        Places file at end of buffer.             (ESC-R)
+       save Buffer      Saves buffer in named file
+                        with prompts.                             (ESC-B)
+       Quit             Is the same as !quit.                     (ESC-Q)
+       buffer Info      Gives information on buffer size and      (ESC-I)
+                        CURSOR position.
+       Help             Gives help on key commands               (ESC-H)
+       clear region
+       clear buffer
+
+    Note!  From the menu you can read a file that contains prompts and then 
+    execute it upon typing RETURN.  Note that you cannot !include a file with 
+    prompts, because they are not syntactically correct, but that RETURN 
+    strips prompts from the beginning of the line.  
+
+14. Local and value declarations in programs.
+
+    Local and value declarations may be made in programs, as in funcs.
+    Locals are not global variables and vanish when the program is done.
+
+
+15. There is a -v command line option in MSDOS.
+     This provides faster line insert, but slower screen clear on ^Z (on CGA).
+     Default is probably fastest on EGA.
+     Uses -v on less than 100% compatibles.
+
+16. Screen shows matching (), {}, [] pairs as you type the close.
+
+17. Tuples with non-1 origin are possible.
+
+     expr @ tuple is a tuple with expr as its origin.
+     This is convenient when dealing with sequences that
+     ''naturally'' begin somewhere other than 1.
+     Example, t := 0@[9,4,7,1] gives t(0) as 9, etc.
+     lo(tuple) gives the tuple's low bound.
+     hi(tuple) gives the tuple's high bound.
+     #t = hi(t)-lo(t)+1
+     origin(expr) sets the default origin to expr and returns the old origin.
+
+
+
+                              Page 6
+
+
+18. Converting strings to variables
+
+    @expr  or   @(expr1, expr2, ..., exprk)
+    These are variables and may be used wherever a variable is needed.
+    NB: The ids in declarations and binding positions (iterators) are
+    not variables and cannot be @-expressions.
+
+    The expressions may be strings or integers.  The integers are
+    converted to strings and the strings are then concatenated to
+    produce the variable name.
+
+    Ex:  for i in [1..5] do @('N',i) := i; end;
+         Defines N1, N2, N3, N4, N5 and assigns them values.
+
+
+19. t{i} returns either the empty set or a singleton set, if t is a map,
+     tuple or string.
+
+20.  MSDOS will look for isetl.ini in the current directory, or the 
+     directory with isetl.exe, or the root directory of the current disk.
+
+21.  On errors, the source line is printed.  You can save space, but
+     lose this feature, with the directive !source off.  By default,
+     the directive !source on is operative.
+
+22. Set(om) is an error, not om.
+
+23. Superdomain of the mathematical predefined functions is number.
+     For example, sin('abc') is an error, not om.
+
+24. Graphics Routines.   Improvements are needed and solicited.
+
+   Function plot in file newplot.stl.  Cursor responds to:
+   space or mouse  -- plot point
+   z               -- define zoom region.  Marks one corner.  Use z a
+                      second time to mark opposite corner.  Use z again
+                      to verify region.  Any other char cancels the zoom.
+   a               -- autoscale.  Adjusts y axis to fit functions
+                      displayed.
+   X               -- double x axis
+   Y               -- double y axis
+   Z               -- double both axes
+   RETURN          -- subsequent chars are written to graph until RETURN
+   g               -- toggles a grid
+
+   For those of you interested in writing graphics code, here is a list
+   of the graphics routines and their meanings.
+
+   graphics(bool)  
+                Call with true to before issuing any of the following commands.
+                Call with false to return to editor mode (or close
+                window).  On PC, ^G will switch between graphics and
+                editor.   
+
+
+
+                                Page 7
+
+   scale(minX,maxX,minY,maxY)
+                Sets up graphing region.  Will plot points within the 
+                rectangle described by args, scaling your values to fit
+                on the screen.  Call before any of the following commands.
+
+   move(x,y)    Move current point (CP) to (x,y).  Nothing drawn.
+   draw(x,y)    Draw line from CP to (x,y),  change CP to (x,y).
+   textout(x,y,text)
+                Write text starting at (x,y) and writing left to
+                right.  If x,y are omitted, writes at CP.
+
+   get_coord()  Returns [x,y,c] when a key is pressed.  (x,y) is the point
+                on the screen and c is the key pressed.  c='' if mouse
+                was clicked.
+
+   linestyle    DELETED -- replaced by thickline
+   thickline(bool) Should lines be thick?  Returns old value.
+
+   xor_plot(bool)   DELETED -- use objects or erasable
+
+   title_window(text) CHANGED
+                Writes near bottom of graph.  Use objects if you want
+                to erase it.
+
+   data_window(text) DELETED
+                Use write.
+
+   clear_screen() -- clears screen and undefines objects
+   new_object()   -- returns an integer i identifying the new object.
+                      Anything plotted up to the next new_object is
+                      part of this object and may be deleted with
+                      del_object(i) and  added back again with add_object(i).
+   add_object(i)
+   del_object(i)
+
+   resolution()   -- returns [minX,minY]. distance between pixels.
+
+   erasable(true) -- plotting is made part of the erasable object
+   erasable(false)-- plotting is no longer part of erasable object
+   erasable()     -- erase erasable object
+        Erasable is used for small objects that come and go quickly.
+        Draw in xor mode, so complex figures or text may look funny.
+   char_mult(m)    -- magnify text by  m 
+   point(x,y,size) -- draw square 2*size+1 pixels on a side, centered
+                      at x,y.  CP := x,y
+   rectangle(xlow,xhigh,ylow,yhigh, hollow)
+                   -- draw rectangle.  If hollow=true or is omitted,
+                      rectangle is hollow.  If hollow==false,
+                      rectangle is filled in.
+
+   save_graph(filename)
+                   -- Write current graph to filename.
+   load_graph(filename)
+                   -- Read filename and add to current object.
+                      Uses the current scale, which may be incorrect
+                      for this graph.  You can call scale after a plot.
+
+
+
+ISETL Copyright Information
+---------------------------
+
+Copyright 1987, 1988, 1989, 1990
+Gary Levin
+
+This manual and the accompanying software may be freely copied, subject to
+the restriction that it not be sold for profit. (This would permit bulk
+copying and sale at cost.)  The software is offered as-is, but we will
+attempt to correct errors in our code.
+
+Portions of the manual and and the accompanying software are derived from
+the Interactive Line Editor which was released with the following copyright
+restrictions.
+
+Copyright 1988
+Evans and Sutherland Computer Corporation
+Salt Lake City, Utah
+All rights reserved.
+
+THE INFORMATION IN THIS SOFTWARE IS SUBJECT TO CHANGE WITHOUT NOTICE AND SHOULD 
+NOT BE CONSTRUED AS A COMMITMENT BY EVANS & SUTHERLAND.  EVANS & SUTHERLAND MAKE
+NO REPRESENTATIONS ABOUT THE SUITABILITY OF THIS SOFTWARE FOR ANY PURPOSE.
+IT IS SUPPLIED "AS IS" WITHOUT EXPRESS OR IMPLIED WARRANTY.
+
+IF THE SOFTWARE IS MODIFIED IN A MANNER CREATING DERIVATIVE COPYRIGHT
+RIGHTS, APPROPRIATE LEGENDS MAY BE PLACED ON THE DERIVATIVE WORK INADDITION
+TO THAT SET FORTH ABOVE.
+
+Permission to use, copy, modify, and distribute this software and its
+documentation for any purpose and without fee is hereby granted, provided
+that the above copyright notice appear in all copies and that bothe the
+copyright notice and this permission notice appear in supporting
+documentation, and thet the name of Evans & Sutherland not be used in
+advertising or publicly pertaining to distribution of the software without
+specific, written prior permission.
+
+Written by: Robert C. Pendleton,  Evans & Sutherland, Interactive Systems
+Division, Salt Lake City, Utah.
+
+Modified for ISETL bu Gary Levin.
+
+

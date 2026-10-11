@@ -1,0 +1,20 @@
+{
+  "name": "@isetl/runtime",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "The original ISETL interpreter, running locally through WebAssembly",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./assets/*": "./dist/assets/*"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json && node ../../scripts/package-runtime.mjs"
+  }
+}

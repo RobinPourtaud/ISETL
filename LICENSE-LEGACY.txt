@@ -1,0 +1,41 @@
+ISETL Copyright Information
+---------------------------
+
+Copyright 1987, 1988, 1989, 1990
+Gary Levin
+
+This manual and the accompanying software may be freely copied, subject to
+the restriction that it not be sold for profit. (This would permit bulk
+copying and sale at cost.)  The software is offered as-is, but we will
+attempt to correct errors in our code.
+
+Portions of the manual and and the accompanying software are derived from
+the Interactive Line Editor which was released with the following copyright
+restrictions.
+
+Copyright 1988
+Evans and Sutherland Computer Corporation
+Salt Lake City, Utah
+All rights reserved.
+
+THE INFORMATION IN THIS SOFTWARE IS SUBJECT TO CHANGE WITHOUT NOTICE AND SHOULD
+NOT BE CONSTRUED AS A COMMITMENT BY EVANS & SUTHERLAND.  EVANS & SUTHERLAND MAKE
+NO REPRESENTATIONS ABOUT THE SUITABILITY OF THIS SOFTWARE FOR ANY PURPOSE.
+IT IS SUPPLIED "AS IS" WITHOUT EXPRESS OR IMPLIED WARRANTY.
+
+IF THE SOFTWARE IS MODIFIED IN A MANNER CREATING DERIVATIVE COPYRIGHT
+RIGHTS, APPROPRIATE LEGENDS MAY BE PLACED ON THE DERIVATIVE WORK INADDITION
+TO THAT SET FORTH ABOVE.
+
+Permission to use, copy, modify, and distribute this software and its
+documentation for any purpose and without fee is hereby granted, provided
+that the above copyright notice appear in all copies and that bothe the
+copyright notice and this permission notice appear in supporting
+documentation, and thet the name of Evans & Sutherland not be used in
+advertising or publicly pertaining to distribution of the software without
+specific, written prior permission.
+
+Written by: Robert C. Pendleton,  Evans & Sutherland, Interactive Systems
+Division, Salt Lake City, Utah.
+
+Modified for ISETL bu Gary Levin.

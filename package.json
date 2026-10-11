@@ -1,0 +1,27 @@
+{
+  "name": "isetl-web",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/runtime",
+    "apps/web"
+  ],
+  "scripts": {
+    "dev": "vite --config apps/web/vite.config.ts",
+    "build": "npm run typecheck && vite build --config apps/web/vite.config.ts && npm run build -w @isetl/runtime",
+    "preview": "vite preview --config apps/web/vite.config.ts",
+    "typecheck": "tsc --noEmit",
+    "build:wasm": "node scripts/generate-library.mjs && python3 scripts/build-wasm.py",
+    "test": "npm run build -w @isetl/runtime && node --test --test-timeout=10000 tests/*.test.mjs",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.12",
+    "wrangler": "^4.149.0"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}
